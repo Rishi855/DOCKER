@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  backend:
+    image: python:3.9-slim
+    command: ["python", "-m", "http.server", "5000"]
+    networks:
+      - custom-net
+  frontend:
+    image: curlimages/curl
+    command: ["sh", "-c", "sleep 5 && curl backend:5000"]
+    networks:
+      - custom-net
+networks:
+  custom-net:
+    driver: bridge
