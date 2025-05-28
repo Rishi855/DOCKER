@@ -1,0 +1,8 @@
+version : "3.8"
+
+services: 
+  app: 
+    image: alpine
+    command: cat /data/hello.txt
+    volumes:
+      - ./data:/data
