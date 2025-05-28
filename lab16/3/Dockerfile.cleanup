@@ -1,0 +1,10 @@
+FROM node:18 AS builder
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN rm -rf /tmp/* /var/tmp/* /root/.npm /root/.cache
+
+FROM node:18-slim
+WORKDIR /app
+COPY --from=builder /app .
+CMD ["node", "app.js"]
